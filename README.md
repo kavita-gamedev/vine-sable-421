@@ -35,7 +35,7 @@ Demo video GIF
 
 1. Open the project in **Unity 2021.3.45f1 LTS**.  
 2. Open the scene:  
-Assets/Scenes/GamePlayScene.unity
+Assets/_Project/Scenes/GamePlayScene.unity
 
 yaml
 Copy code
