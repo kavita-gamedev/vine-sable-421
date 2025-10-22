@@ -40,6 +40,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+       // PlayerPrefs.DeleteAll();
         gameOverText.gameObject.SetActive(false);
         LoadHighScore();
         CreateBoard();
