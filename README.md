@@ -1,60 +1,139 @@
-# Game Prototype
+Make It POP – Unity Test Project
+Overview
 
-## Project Overview
-This is a **game prototype** developed from scratch using **Unity 2021.3.45f1 LTS**.  
-It demonstrates smooth gameplay, scoring with combo system, audio feedback, and progress persistence.  
+This is a 1-minute gameplay loop prototype built in Unity to showcase game feel and “POP factor” in mobile combat. The goal is to make every movement, hit, and effect feel satisfying, juicy, and fun.
 
-- **Target Platforms:** iOS, Android  
-- **Features:**  
-  - Dynamic board layouts (rows and columns configurable)  
-  - Smooth object flipping and matching animations  
-  - Combo scoring system  
-  - Save/load system for scores  
-  - Game Over text when all objects are matched  
+The prototype supports both mobile touch and desktop controls for testing in the editor.
 
----
+Unity Version: 2023.3.0f1 (example: replace with 6000.0.060f1 if that’s the build you used)
+Main Scene Used: GameScene.unity
 
-## 🎮 Gameplay Demo
+Chosen Path
 
-<p align="center">
-  <img src="Assets/DemoVideo.gif" alt="Game Demo" width="600">
-</p>
+Path: Hack & Slash Dungeon
 
----
+Weapon Type: Melee (Sword)
 
-## Project Structure
-Assets/
-Scripts/ # Game logic scripts
-Prefabs/ # Prefabs for objects
-Audio/ # Sound effects
-Sprites/ # Visual assets
-Scenes/ # Gameplay scene to play
-Demo video GIF
+Gameplay Goal: Kill enemies and survive waves for 1 minute
 
-## How to Play
+Features
+Core Gameplay
 
-1. Open the project in **Unity 2021.3.45f1 LTS**.  
-2. Open the scene:  
-Assets/_Project/Scenes/GamePlayScene.unity
+Single playable character with sword attacks
 
-yaml
-Copy code
-3. Adjust **rows** and **columns** in the **GameController** Inspector to change the board layout.  
-4. Press **Play** in the Editor to test.  
+Movement:
 
----
+Touch: Swipe to move or tap to attack/dash
 
-## Switch Platform
+Desktop: Keyboard (WASD) for movement, Space for attack, Left Shift for dash
 
-1. Go to `File > Build Settings`.  
-2. Select **iOS** or **Android**.  
-3. Click **Switch Platform**.  
-4. Build and run on the chosen device.  
+Dash mechanic: Quick movement in swipe direction or forward
 
----
+Lock-On System: Player can lock onto nearest enemy
 
-## Notes
-- All gameplay logic and UI elements are built from scratch.  
-- Placeholder sprites and audio are included for testing.  
-- Focus is on code quality and gameplay rather than visuals.  
+Auto-move: Player can automatically move toward a locked target
 
+Enemy Waves: Small arena, multiple enemies spawned
+
+Input System
+
+Mobile Touch:
+
+Swipe for movement (TouchInputManager)
+
+Tap for attacks
+
+Flick above threshold triggers dash
+
+UI buttons for Attack, Dash, Lock-On, Move
+
+Desktop/Editor:
+
+WASD/Arrow keys for movement
+
+Mouse click simulates touch swipe/tap
+
+Space key triggers attack, Left Shift triggers dash
+
+UI
+
+Simple UI with timer and score
+
+Buttons for movement, attack, dash, and lock-on
+
+Buttons interactable depending on game state (e.g., move button only active when a target is locked)
+
+Feedback & Juiciness
+
+Camera shake on attack and dash (CameraShake3D)
+
+Sword swing hitboxes trigger feedback on hits
+
+Smooth rotation and movement for satisfying control feel
+
+How to Play
+
+Start the game in Unity or on mobile
+
+Use the movement swipe (mobile) or WASD (desktop) to move the player
+
+Tap Attack or press Space to swing the sword
+
+Swipe/flick to dash or press Left Shift
+
+Lock-on to enemies for auto movement toward target
+
+Survive waves and kill enemies within 60 seconds
+
+Technical Notes
+Scripts
+
+TouchInputManager.cs – Handles mobile touch and editor input
+
+PlayerController3D.cs – Player movement, attack, dash, lock-on, and auto-move logic
+
+GameManager.cs – Game flow (start, end, reset), player/enemy spawning
+
+GameUIScreen.cs – Handles UI, buttons, and timer updates
+
+CameraFollow.cs, SwordSwingPivot.cs, SwordHitbox.cs, EnemySpawner3D.cs, Enemy3D.cs – Supporting gameplay components
+
+Touch vs Desktop Input
+
+Input system automatically switches based on platform:
+
+UNITY_EDITOR / STANDALONE → keyboard/mouse input
+
+Mobile → touch input
+
+UI buttons work on all platforms and respect input flags to prevent conflicting actions
+
+Setup Instructions
+
+Open the Unity project in version 6000.0.060f1
+
+Open Scenes/GameScene.unity
+
+Ensure TouchInputManager, GameManager, PlayerPrefab, EnemySpawner3D, and GameUIScreen are present in the scene
+
+Press Play in the editor or build for mobile
+
+Focus on “POP Factor”
+
+Snappy movement with responsive rotation
+
+Juicy attack feedback: camera shake, hit flashes, and sword hit effects
+
+Smooth dash and swipe mechanics for satisfying motion
+
+Button feedback on mobile for clear player action feedback
+
+Optional / Future Enhancements
+
+Add particle effects on hits and dashes
+
+Add combo or score multipliers
+
+Slow motion on big hits
+
+More visual feedback for enemy damage
